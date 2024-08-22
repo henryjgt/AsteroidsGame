@@ -1,4 +1,4 @@
-"""Defines the asteroid sprite."""
+"""Defines the player sprite's bullet objects."""
 
 import pygame
 
@@ -6,10 +6,9 @@ from circleshape import CircleShape
 from constants import *
 
 
-class Asteroid(CircleShape):
-
-    def __init__(self, x, y, radius):
-        super().__init__(x, y, radius)
+class Shot(CircleShape):
+    def __init__(self, x, y):
+        super().__init__(x, y, radius=SHOT_RADIUS)
         self.x = x
         self.y = y
 
