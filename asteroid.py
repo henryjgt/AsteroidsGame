@@ -1,5 +1,7 @@
 """Defines the asteroid sprite."""
 
+import random
+
 import pygame
 
 from circleshape import CircleShape
@@ -18,3 +20,17 @@ class Asteroid(CircleShape):
 
     def update(self, dt):
         self.position += dt * self.velocity
+
+    def split(self):
+        self.kill()
+
+        if self.radius <= ASTEROID_MIN_RADIUS:
+            return
+
+        self.radius -= ASTEROID_MIN_RADIUS
+        asteroid_1 = Asteroid(self.position.x, self.position.y, self.radius)
+        asteroid_2 = Asteroid(self.position.x, self.position.y, self.radius)
+
+        random_angle = random.uniform(20, 50)
+        asteroid_1.velocity = 1.2 * self.velocity.rotate(random_angle)
+        asteroid_2.velocity = 1.2 * self.velocity.rotate(-random_angle)
